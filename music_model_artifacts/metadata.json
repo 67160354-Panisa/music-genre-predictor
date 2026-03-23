@@ -1,0 +1,24 @@
+{
+    "project": "Music Genre Prediction",
+    "accuracy": 0.7052,
+    "features": [
+        "popularity",
+        "acousticness",
+        "danceability",
+        "energy",
+        "instrumentalness",
+        "liveness",
+        "loudness",
+        "speechiness",
+        "tempo",
+        "valence"
+    ],
+    "genres": [
+        "Alternative",
+        "Anime",
+        "Country",
+        "Electronic",
+        "Jazz",
+        "Rap"
+    ]
+}
