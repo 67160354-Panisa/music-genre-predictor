@@ -77,16 +77,6 @@ with col1:
     acousticness = st.slider("ความเป็นดนตรีสด/เสียงธรรมชาติ (Acoustic)", 0.0, 1.0, 0.5)
     danceability = st.slider("ความน่าเต้น/จังหวะชวนโยก (Danceability)", 0.0, 1.0, 0.5)
     energy = st.slider("ความมันส์และพลังงาน (Energy)", 0.0, 1.0, 0.5)
-    instrumentalness = st.slider("# 4. ส่วนรับข้อมูลจากผู้ใช้งาน (ปรับคำให้ฟังดูเป็นธรรมชาติมากขึ้น)
-st.subheader("🎛️ ปรับแต่งสไตล์ดนตรีที่คุณชอบ")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    popularity = st.slider("ระดับความฮิตของเพลง (Popularity)", 0, 100, 50)
-    acousticness = st.slider("ความเป็นดนตรีสด/เสียงธรรมชาติ (Acoustic)", 0.0, 1.0, 0.5)
-    danceability = st.slider("ความน่าเต้น/จังหวะชวนโยก (Danceability)", 0.0, 1.0, 0.5)
-    energy = st.slider("ความมันส์และพลังงาน (Energy)", 0.0, 1.0, 0.5)
     instrumentalness = st.slider("เสียงเครื่องดนตรี (Instrumentalness)", 0.0, 1.0, 0.1)
 
 with col2:
@@ -96,12 +86,6 @@ with col2:
     tempo = st.slider("ความเร็วของจังหวะ (Tempo BPM)", 50, 200, 120)
     valence = st.slider("อารมณ์ของเพลง (เศร้า/หม่น - สดใส/ร่าเริง)", 0.0, 1.0, 0.5))", 0.0, 1.0, 0.1)
 
-with col2:
-    liveness = st.slider("ฟีลเหมือนนั่งฟังการแสดงสด (Liveness)", 0.0, 1.0, 0.1)
-    loudness = st.slider("ระดับความดังของเสียง (Loudness dB)", -60.0, 0.0, -5.0)
-    speechiness = st.slider("เน้นเสียงพูด/เสียงร้อง (Speechiness)", 0.0, 1.0, 0.05)
-    tempo = st.slider("ความเร็วของจังหวะ (Tempo BPM)", 50, 200, 120)
-    valence = st.slider("มู้ดของเพลง (เศร้า/หม่น - สดใส/ร่าเริง)", 0.0, 1.0, 0.5)
 
 # 5. ปุ่มทำนายผล
 if st.button("🚀 วิเคราะห์แนวเพลง", use_container_width=True):
