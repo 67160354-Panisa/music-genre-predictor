@@ -74,7 +74,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     # เพิ่ม format="%d%%" เพื่อให้มีเครื่องหมายเปอร์เซ็นต์ต่อท้าย
-    popularity = st.slider("ระดับความฮิตของเพลง (Popularity)", 0, 100, 50, format="%d%%")
+    popularity = st.slider("ระดับความฮิตของเพลง (Popularity)", 0, 100, 50)
     acoustic_pct = st.slider("ความเป็นดนตรีสด/เสียงธรรมชาติ (Acoustic)", 0, 100, 50, format="%d%%")
     dance_pct = st.slider("ความน่าเต้น/จังหวะชวนโยก (Danceability)", 0, 100, 50, format="%d%%")
     energy_pct = st.slider("ความมันส์และพลังงาน (Energy)", 0, 100, 50, format="%d%%")
