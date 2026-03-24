@@ -67,38 +67,42 @@ st.title("🎧 Music Genre Predictor")
 st.markdown("ระบบ AI ทำนายแนวเพลงจากคุณลักษณะของเสียงดนตรี")
 st.divider()
 
-# 4. ส่วนรับข้อมูลจากผู้ใช้งาน (ปรับคำให้ฟังดูเป็นธรรมชาติมากขึ้น)
+# 4. ส่วนรับข้อมูลจากผู้ใช้งาน
 st.subheader("🎛️ ปรับแต่งสไตล์ดนตรีที่คุณชอบ")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    popularity = st.slider("ระดับความฮิตของเพลง (Popularity)", 0, 100, 50)
-    acousticness = st.slider("ความเป็นดนตรีสด/เสียงธรรมชาติ (Acoustic)", 0.0, 1.0, 0.5)
-    danceability = st.slider("ความน่าเต้น/จังหวะชวนโยก (Danceability)", 0.0, 1.0, 0.5)
-    energy = st.slider("ความมันส์และพลังงาน (Energy)", 0.0, 1.0, 0.5)
-    instrumentalness = st.slider("เสียงเครื่องดนตรี (Instrumentalness)", 0.0, 1.0, 0.1)
+    # เพิ่ม format="%d%%" เพื่อให้มีเครื่องหมายเปอร์เซ็นต์ต่อท้าย
+    popularity = st.slider("ระดับความฮิตของเพลง (Popularity)", 0, 100, 50, format="%d%%")
+    acoustic_pct = st.slider("ความเป็นดนตรีสด/เสียงธรรมชาติ (Acoustic)", 0, 100, 50, format="%d%%")
+    dance_pct = st.slider("ความน่าเต้น/จังหวะชวนโยก (Danceability)", 0, 100, 50, format="%d%%")
+    energy_pct = st.slider("ความมันส์และพลังงาน (Energy)", 0, 100, 50, format="%d%%")
+    inst_pct = st.slider("สัดส่วนดนตรีล้วน (ไม่มีเสียงร้อง)", 0, 100, 10, format="%d%%")
 
 with col2:
-    liveness = st.slider("ฟีลเหมือนนั่งฟังการแสดงสด (Liveness)", 0.0, 1.0, 0.1)
-    loudness = st.slider("ระดับความดังของเสียง (Loudness dB)", -60.0, 0.0, -5.0)
-    speechiness = st.slider("เน้นเสียงพูด/เสียงร้อง (Speechiness)", 0.0, 1.0, 0.05)
-    tempo = st.slider("ความเร็วของจังหวะ (Tempo BPM)", 50, 200, 120)
-    valence = st.slider("อารมณ์ของเพลง (เศร้า/หม่น - สดใส/ร่าเริง)", 0.0, 1.0, 0.5)
+    liveness_pct = st.slider("ฟีลเหมือนนั่งฟังการแสดงสด (Liveness)", 0, 100, 10, format="%d%%")
     
+    # ความดัง และ จังหวะ ใช้หน่วยเฉพาะของดนตรี
+    loudness = st.slider("ระดับความดังของเสียง (Loudness)", -60.0, 0.0, -5.0, format="%.1f dB")
+    speech_pct = st.slider("เน้นเสียงพูด/เสียงร้อง (Speechiness)", 0, 100, 5, format="%d%%")
+    tempo = st.slider("ความเร็วของจังหวะ (Tempo)", 50, 200, 120, format="%d BPM")
+    valence_pct = st.slider("มู้ดของเพลง (เศร้า/หม่น - สดใส/ร่าเริง)", 0, 100, 50, format="%d%%")
+
 # 5. ปุ่มทำนายผล
 if st.button("🚀 วิเคราะห์แนวเพลง", use_container_width=True):
+    # แมรี่แอบจับตัวแปรที่มี _pct มาหาร 100.0 ตรงนี้ เพื่อให้ AI รับค่าแบบ 0.0 - 1.0 ตามที่มันเคยเรียนมาค่ะ
     input_data = pd.DataFrame([{
         'popularity': popularity,
-        'acousticness': acousticness,
-        'danceability': danceability,
-        'energy': energy,
-        'instrumentalness': instrumentalness,
-        'liveness': liveness,
+        'acousticness': acoustic_pct / 100.0,
+        'danceability': dance_pct / 100.0,
+        'energy': energy_pct / 100.0,
+        'instrumentalness': inst_pct / 100.0,
+        'liveness': liveness_pct / 100.0,
         'loudness': loudness,
-        'speechiness': speechiness,
+        'speechiness': speech_pct / 100.0,
         'tempo': tempo,
-        'valence': valence
+        'valence': valence_pct / 100.0
     }])
 
     pred_encoded = pipeline.predict(input_data)[0]
