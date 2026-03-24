@@ -84,9 +84,8 @@ with col2:
     loudness = st.slider("ระดับความดังของเสียง (Loudness dB)", -60.0, 0.0, -5.0)
     speechiness = st.slider("เน้นเสียงพูด/เสียงร้อง (Speechiness)", 0.0, 1.0, 0.05)
     tempo = st.slider("ความเร็วของจังหวะ (Tempo BPM)", 50, 200, 120)
-    valence = st.slider("อารมณ์ของเพลง (เศร้า/หม่น - สดใส/ร่าเริง)", 0.0, 1.0, 0.5))", 0.0, 1.0, 0.1)
-
-
+    valence = st.slider("อารมณ์ของเพลง (เศร้า/หม่น - สดใส/ร่าเริง)", 0.0, 1.0, 0.5)
+    
 # 5. ปุ่มทำนายผล
 if st.button("🚀 วิเคราะห์แนวเพลง", use_container_width=True):
     input_data = pd.DataFrame([{
